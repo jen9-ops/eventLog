@@ -414,8 +414,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // --- ВАШ URL ДЛЯ GOOGLE APPS SCRIPT ---
-            const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRdwVFcaJwGn3BNM4IDbRmzkPBavfXau0iavHz96NaP7WbT1WeRVNpZFBD204mfbWq/exec';
-
+            
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxsDAusXqpFV9fw_O0thz6LQtEyqlDqFu0M4QSyFzOjGDbCvaXimFTrKBh9qB6PqHFx/exec';
             // Элементы DOM
             const eventsBtn = document.getElementById('eventsBtn');
             const exportBtn = document.getElementById('exportBtn');
@@ -432,6 +432,15 @@ const logOutput = document.getElementById('log-output');
             const formattedDate = `${String(now.getDate()).padStart(2, '0')}.${String(now.getMonth() + 1).padStart(2, '0')}.${now.getFullYear()}`;
             currentDateElement.textContent = `Дата: ${formattedDate}`;
 
+
+// --- Функция для вывода в лог ---
+            function log(message, type = 'info') {
+                logOutput.textContent = message;
+                logOutput.className = type === 'error' ? 'log-error' : (type === 'success' ? 'log-success' : '');
+            }
+
+
+            
             // --- ФУНКЦИЯ ЗАГРУЗКИ ДАННЫХ ИЗ GOOGLE SHEETS ---
             function loadEventsFromSheet() {
                 eventsTableBody.innerHTML = '<tr><td colspan="5">Завантаження даних...</td></tr>';
